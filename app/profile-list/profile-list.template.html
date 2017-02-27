@@ -1,0 +1,103 @@
+
+<!-- UNUSED TABLE DATA IS RESIDING AT THE VERY BOTTOM..!! -->
+
+
+<br>
+<a class='pull-right col-sm-2 col-sm-offset-1 custom-color' href="#">Create Profile</a>
+
+
+<div class="box-table">
+<table id="table"
+			 data-toggle="table"
+			 data-search="true"
+			 data-filter-control="true"
+			 data-show-export="true"
+			 data-click-to-select="true"
+			 data-toolbar="#toolbar">
+	<thead>
+	<tr>
+		<th data-field="date" data-filter-control="select" data-sortable="true">Date</th>
+		<th data-field="date" data-filter-control="select" data-sortable="true">Name</th>
+		<th>Consultancy</th>
+
+		<th data-field="date" data-filter-control="select" data-sortable="true">Location</th>
+		<th data-field="date" data-filter-control="select" data-sortable="true">Designation</th>
+		<th>Skills</th>
+		<th>Current CTC</th>
+		<th>Expected CTC</th>
+		<th>Notice Period</th>
+	</tr>
+	</thead>
+<ul class="profiles">
+
+	<tr ng-repeat="profile in $ctrl.profiles">
+		<td>{{ profile.time }}</td>
+		<td><a href='/profiles/{{ profile.id }}'>{{ profile.name }}</td>
+
+		<td>{{ profile.user }}</td>
+
+		<td>{{ profile.location }}</td>
+		<td>{{ profile.designation }}</td>
+		<td><span ng-repeat="skill in profile.skill_details">{{ skill.skill }}{{$last? '' : ', '}}</span></td>
+		<td class='text-align-center'>{{ profile.current_ctc }}</td>
+		<td class='text-align-center'>{{ profile.expected_ctc }}</td>
+		<td class='text-align-center'>{{ profile.notice_period }} Days</td>
+	</tr>
+
+</ul>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+ <h2 class="col-sm-6 col-sm-offset-1">Profiles</h2>
+	  <div class='col-sm-6 col-sm-offset-1'>
+	  <ol>
+	    {% for profile in profiles %}
+	    {% if request.user.is_superuser %}
+		<li><a href='/profiles/{{ profile.id }}/'><h4>{{ profile.name }}   (   {{ profile.user.name }}    )</h4></a></li>
+	    {% elif not request.user.is_superuser %}
+	    <li><a href='/profiles/{{ profile.id }}/'><h4>{{ profile.name }}</h4></a></li>
+	    {% endif %}
+	    {% endfor %}
+	  </ol> -->

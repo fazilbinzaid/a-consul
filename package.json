@@ -1,13 +1,18 @@
 {
   "name": "consultancy",
-  "version": "1.0.0",
-  "description": "consultancy app frontend for drf backend.",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": true,
+  "repository": "https://github.com/fazilbinzaid/a-consul",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "http-server": "^0.9.0"
   },
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server ./app -a localhost -p 8080 -c-1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
 }
