@@ -3,7 +3,7 @@
 
 
 <br>
-<a class='pull-right col-sm-2 col-sm-offset-1 custom-color' href="#">Create Profile</a>
+<a class='pull-right col-sm-2 col-sm-offset-1 custom-font' href="#">Create Profile</a>
 
 
 <div class="box-table">
@@ -28,23 +28,28 @@
 		<th>Notice Period</th>
 	</tr>
 	</thead>
-<ul class="profiles">
-
-	<tr ng-repeat="profile in $ctrl.profiles">
-		<td>{{ profile.time }}</td>
-		<td><a href='/profiles/{{ profile.id }}'>{{ profile.name }}</td>
-
-		<td>{{ profile.user }}</td>
-
-		<td>{{ profile.location }}</td>
-		<td>{{ profile.designation }}</td>
-		<td><span ng-repeat="skill in profile.skill_details">{{ skill.skill }}{{$last? '' : ', '}}</span></td>
-		<td class='text-align-center'>{{ profile.current_ctc }}</td>
-		<td class='text-align-center'>{{ profile.expected_ctc }}</td>
-		<td class='text-align-center'>{{ profile.notice_period }} Days</td>
+	<tr>
+	<select ng-model="query" class="custom-font">
+		<option value=""> </option>
+		<option value="locfilter" class="custom-color">Ernakulam</option>
+	</select>
 	</tr>
 
-</ul>
+	<ul class="profiles">
+		<tr ng-repeat="profile in $ctrl.profiles | filter: query">
+			<td>{{ profile.time | date : 'dd-MM-yyyy' }}</td>
+			<td><a href='#/accounts/profiles/{{ profile.id }}'>{{ profile.name }}</td>
+
+			<td>{{ profile.user }}</td>
+
+			<td>{{ profile.location }}</td>
+			<td>{{ profile.designation }}</td>
+			<td><span ng-repeat="skill in profile.skill_details">{{ skill.skill }}{{$last? '' : ', '}}</span></td>
+			<td class='text-align-center'>{{ profile.current_ctc }}</td>
+			<td class='text-align-center'>{{ profile.expected_ctc }}</td>
+			<td class='text-align-center'>{{ profile.notice_period }} Days</td>
+		</tr>
+	</ul>
 </table>
 </div>
 

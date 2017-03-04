@@ -12,9 +12,34 @@
     <script src="app.config.js"></script>
     <script src="profile-list/profile-list.module.js"></script>
     <script src="profile-list/profile-list.component.js"></script>
+    <script src="profile-detail/profile-detail.module.js"></script>
+    <script src="profile-detail/profile-detail.component.js"></script>
+
   </head>
 
-  <body class="custom-font">
+  <body>
+
+
+    <nav class="navbar navbar-default navbar-static-top nav_bar affix">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="#">Raw Data</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="">Home</a></li>
+            <li><a href=''>Profiles</a></li></li>
+
+            <li><a href=''>Questions</a></li></li>
+
+          </ul>
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <br><br><br>
 
     <div ng-view></div>
 

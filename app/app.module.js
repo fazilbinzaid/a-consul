@@ -2,5 +2,6 @@
 
 angular.module('consultancyApp', [
   'ngRoute',
-  'profileList'
+  'profileList',
+  'profileDetail',
 ]);
