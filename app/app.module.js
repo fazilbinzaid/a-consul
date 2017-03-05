@@ -4,4 +4,5 @@ angular.module('consultancyApp', [
   'ngRoute',
   'profileList',
   'profileDetail',
+  'profileCreateForm',
 ]);

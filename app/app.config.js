@@ -10,6 +10,9 @@ angular.
         when('/profiles', {
           template: '<profile-list></profile-list>'
         }).
+        when('/profiles/create', {
+          template: '<profile-create-form></profile-create-form>'
+        }).
         when('/profiles/:profileId', {
           template: '<profile-detail></profile-detail>'
         }).
