@@ -2,6 +2,7 @@
 
 angular.module('consultancyApp', [
   'ngRoute',
+  'ngResource',
   'profileList',
   'profileDetail',
   'profileCreateForm',

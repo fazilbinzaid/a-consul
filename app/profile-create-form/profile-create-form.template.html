@@ -2,93 +2,92 @@
 
 
 
-<fieldset>
-
-<div class='col-sm-11 col-sm-offset-1 custom-color'>
-  <h1 class="white-font">Profile</h1>
-  <br>
-  <form method='POST' action='' enctype='multipart/form-data'>
-
-    <table id="profile" class="custom-font">{{ profile.non_field_errors }}
-
-      <tr>
-        <td class="custom-padding">
-          {{ profile.name.errors }}
-          <label for="{{ profile.name.id_for_label }}">Name</label>
-          {{ profile.name }}
-        </td>
-        <td class="custom-padding">
-          {{ profile.email.errors }}
-          <label for="{{ profile.email.id_for_label }}">Email</label>
-          {{ profile.email }}
-        </td>
-        <td class="custom-padding">
-          {{ profile.designation.errors }}
-          <label for="{{ profile.designation.id_for_label }}">Designation</label>
-          {{ profile.designation }}
-        </td>
-      </tr>
-      <tr>
-        <td class="custom-padding">
-          {{ profile.location.errors }}
-          <label for="{{ profile.location.id_for_label }}">Location</label>
-          {{ profile.location }}
-        </td>
-      </tr>
-      <tr>
-        <td class="custom-padding int-pad">
-          {{ profile.current_ctc.errors }}
-          <label for="{{ profile.current_ctc.id_for_label }}">Current CTC</label>
-          {{ profile.current_ctc }}
-        </td>
-        <td class="custom-padding int-pad">
-          {{ profile.expected_ctc.errors }}
-          <label for="{{ profile.expected_ctc.id_for_label }}">Expected CTC</label>
-          {{ profile.expected_ctc }}
-        </td>
-        <td class="custom-padding int-pad">
-          {{ profile.notice_period.errors }}
-          <label for="{{ profile.notice_period.id_for_label }}">Notice Period</label>
-          {{ profile.notice_period }}
-        </td>
-      </tr>
-      <tr>
-        <td class="custom-padding">
-          {{ profile.resume.errors }}
-          <label for="{{ profile.resume.id_for_label }}">Resume</label>
-          {{ profile.resume }}
-        </td>
-        <td class="custom-padding">
-          {{ profile.recording.errors }}
-          <label for="{{ profile.recording.id_for_label }}">Interview Recording</label>
-          {{ profile.recording }}
-        </td>
-      </tr>
-    </table>
-
-
-    <table id="profile-form" class="custom-font">
-            <tr>
-              <td class="custom-padding">
-                {{ form.skill.errors }}
-                <label for="skill">Skill {{ forloop.counter }}:</label>
-                {{ form.skill }}
-              </td>
-              <td class="custom-padding">
-                {{ form.exp.errors }}
-                <label for="expnce">Experience (years) :</label>
-                {{ form.exp }}
-              </td>
-            </tr>
-
-    </table>
+  <div class='col-sm-8 col-sm-offset-2 white-font'>
+    <h1 class="white-font page-header">Profile</h1>
     <br>
-    <p>
-    <input class='btn btn-primary' type='submit' value='Submit' />
-    </p>
+    <form method='POST' name="profileForm" enctype='multipart/form-data'>
 
-  </form>
-</div>
+      <div class="col-sm-12">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" ng-model="profile.name">
+            <span ng-show="errorName">{{ errorName }}</span>
+          </div>
+        </div>
 
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="name" class="form-control" ng-model="profile.email">
+            <span ng-show="errorLocation">{{ errorLocation }}</span>
+          </div>
+        </div>
 
-</fieldset>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Designation</label>
+            <select class="form-control" ng-model="profile.designation" ng-options="job for job in jobs"></select>
+            <span ng-show="errorNotice_period">{{ errorNotice_period }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" name="name" class="form-control" ng-model="profile.location">
+            <span ng-show="errorEmail">{{ errorEmail }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Current CTC</label>
+            <input type="number" name="name" class="form-control" ng-model="profile.current_ctc">
+            <span ng-show="errorCurrent_ctc">{{ errorCurrent_ctc }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Expected CTC</label>
+            <input type="number" name="name" class="form-control" ng-model="profile.expected_ctc">
+            <span ng-show="errorDesignation">{{ errorDesignation }}</span>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Notice Period</label>
+            <input type="number" name="name" class="form-control" ng-model="profile.notice_period">
+            <span ng-show="errorExpected_ctc">{{ errorExpected_ctc }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" id="parent" ng-repeat="item in itemstoadd">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Skill</label>
+            <input type="text" name="name" class="form-control" ng-model="item.skill">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Experience(Years)</label>
+            <input type="number" name="name" class="form-control" ng-model="item.exp">
+          </div>
+        </div>
+        <div class="col-sm-4 custom-color" id="btndiv">
+          <button class="small" style="margin-left: -29px;margin-top: 37px;" id="addbutton" ng-click="add(item); addNew(); removebutton()">Add new</button>
+          <!-- <button class="small" style="margin-top: 37px;margin-left: -4px;" id="removebtn" ng-click="removeitem(item)">Remove</button> -->
+        </div>
+        <div class="col-sm-11 col-sm-offset-1">
+          <br>
+          <button type="submit" id="submitbutton" class="btn btn-primary pull-right" ng-click="add(item); submitForm()" name="button">Submit</button>
+        </div>
+      </div>
+      <span> </span>
+    </form>
+    <br><br><br><br>
+  </div>
