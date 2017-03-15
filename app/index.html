@@ -8,23 +8,35 @@
     <link rel="stylesheet" href="app.css" />
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/autofill-event/src/autofill-event.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
+    <script src="services/authentication.services.js"></script>
+    <script src="services/profiles.services.js"></script>
+    <script src="services/snackbar.services.js"></script>
+    <script src="controllers/navbar.controller.js"></script>
     <script src="profile-list/profile-list.module.js"></script>
     <script src="profile-list/profile-list.component.js"></script>
     <script src="profile-detail/profile-detail.module.js"></script>
     <script src="profile-detail/profile-detail.component.js"></script>
     <script src="profile-create-form/profile-create-form.module.js"></script>
     <script src="profile-create-form/profile-create-form.component.js"></script>
+    <script src="profile-login/profile-login.module.js"></script>
+    <script src="profile-login/profile-login.component.js"></script>
+    <script src="account-register/account-register.module.js"></script>
+    <script src="account-register/account-register.component.js"></script>
+    <base href="/" target="">
 
   </head>
 
   <body class="fadeImage">
 
 
-    <nav class="navbar navbar-default navbar-static-top nav_bar affix">
+    <nav class="navbar navbar-default navbar-static-top nav_bar affix" ng-controller="NavbarController">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,12 +47,13 @@
           <ul class="nav navbar-nav">
             <li><a href="">Home</a></li>
             <li><a href=''>Profiles</a></li></li>
-
             <li><a href=''>Questions</a></li></li>
-
           </ul>
-
-        </div><!--/.nav-collapse -->
+          <ul class="nav navbar-nav">
+            <li><a class="pull-right" href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
       </div>
     </nav>
     <br><br><br>

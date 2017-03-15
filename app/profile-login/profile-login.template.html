@@ -1,33 +1,25 @@
-<html ng-cloak ng-app>
-<head>
-    <link rel="stylesheet" href="/static/js/angular/angular-csp.css"/>
-    <link rel="stylesheet" href="/static/js/bootstrap/dist/css/bootstrap.min.css"/>
-</head>
-<body>
-  <div class="navbar navbar-fixed-bottom" ng-controller="authController" ng-init="user='{{user.username}}'">
-    <div ng-show="user" class="navbar-form navbar-right">
-      <input type="submit" class="btn btn-default" ng-click="logout()" value="logout {{user}}"/>
-    </div>
-    <div ng-hide="user">
-      <form id="id_auth_form" class="navbar-form navbar-right" ng-submit="login()">
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1 class="white-font">Login</h1>
+
+    <div class="well">
+      <form role="form" ng-submit="login()">
+        <div class="alert alert-danger" ng-show="error" ng-bind="error"></div>
+
         <div class="form-group">
-          <input ng-model="username" required name="username" type="text" placeholder="username" class="form-control">
+          <label for="login__email">Email</label>
+          <input type="text" class="form-control" id="login__email" ng-model="email" placeholder="ex. john@example.com" />
         </div>
+
         <div class="form-group">
-          <input ng-model="password" required name="password" type="password" placeholder="password" class="form-control">
+          <label for="login__password">Password</label>
+          <input type="password" class="form-control" id="login__password" ng-model="password" placeholder="ex. thisisnotgoogleplus" />
         </div>
-        <div class="btn-group">
-          <input type="submit" class="btn btn-default" value="login">
-          <input type="submit" class="btn btn-default" value="register" ng-click="register($event)">
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
   </div>
-</body>
-<script src="/static/js/jquery/jquery.js"></script>
-<script src="/static/js/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/js/angular/angular.min.js"></script>
-<script src="/static/js/angular-resource/angular-resource.min.js"></script>
-<script src="/static/js/autofill-event/src/autofill-event.js"></script>
-<script src="/static/js/app.js"></script>
-</html>
+</div>

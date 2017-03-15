@@ -4,8 +4,8 @@ angular.
   module('profileCreateForm').
   component('profileCreateForm', {
     templateUrl: 'profile-create-form/profile-create-form.template.html',
-    controller: ['$http', '$scope','$compile',
-      function ProfileCreateFormController($http, $scope, $compile) {
+    controller: [ '$scope','$rootScope', 'Authentication', 'Profiles',
+      function ProfileCreateFormController($scope, $rootScope, Authentication, Profiles) {
 
         $scope.jobs = [('Project Manager', 'Project Manager'), ('Developer', 'Developer'), ('Tester', 'Tester'),
            ('Technical Lead', 'Technical Lead'), ('Hybrid', 'Hybrid'), ('DevOps', 'DevOps'),
@@ -64,24 +64,25 @@ angular.
         $scope.submitForm = function() {
           var profile = JSON.stringify($scope.profile);
           console.log(profile);
-          $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8000/accounts/profiles/',
-            data: profile,
-            headers: {'Content-Type': 'application/json'}
-          })
-            .then(function(data) {
-              console.log($scope.profile.skill_details);
-              if (data.errors) {
-                $scope.errorName = data.errors.name;
-                $scope.errorEmail = data.errors.email;
-                $scope.errorDesignation = data.errors.designation;
-                $scope.errorLocation = data.errors.location;
-                $scope.errorCurrent_ctc = data.errors.current_ctc;
-                $scope.errorExpected_ctc = data.errors.expected_ctc;
+          $rootScope.$broadcast('post.created', {
+            content: profile,
+            user: {
+              email: Authentication.getAuthenticatedAccount().email
+            }
+          });
+          // $scope.closeThisDialog();
 
-              }
-            });
+          Profiles.create(profile).then(createProfileSuccessFn, createProfileErrorFn);
+
+          function createProfileSuccessFn(data, status, headers, config) {
+            console.log('Success! Post created.');
+          }
+
+          function createProfileErrorFn(data, status, headers, config) {
+            $rootScope.$broadcast('post.created.error');
+            // Snackbar.error(data.error);
+          }
+
 
         };
 

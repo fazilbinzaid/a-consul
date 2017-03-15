@@ -2,10 +2,13 @@
   "name": "consultancy",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.4.0",
+    "angular": "^1.6.2",
     "bootstrap": "^3.2.0",
-    "angular-route": "^1.4.0",
-    "jquery": "^3.1.1"
+    "angular-route": "^1.6.2",
+    "jquery": "^3.1.1",
+    "angular-resource": "1.3.0-build.2419+sha.fe0e434",
+    "autofill-event": "1.0.0",
+    "angular-cookies": "^1.6.2"
   },
   "appPath": "app",
   "moduleName": "consultancyApp",
@@ -17,5 +20,8 @@
         "dist/js/bootstrap.js"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "1.6.3"
   }
 }
