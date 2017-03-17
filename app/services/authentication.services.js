@@ -2,8 +2,8 @@
 
 angular
   .module('authentication.services', [])
-  .factory('Authentication', ['$cookies', '$http', '$location',
-      function Authentication($cookies, $http, $location) {
+  .factory('Authentication', ['$cookies', '$http', '$location', 'store', '$window', 'moment',
+      function Authentication($cookies, $http, $location, store, $window, moment) {
 
 
         var Authentication = {
@@ -37,15 +37,24 @@ angular
 
           // $http.get('http://127.0.0.1:8000/api/auth/login/');
 
-          return $http.post('http://127.0.0.1:8000/accounts/login/', {
+          return $http.post('http://127.0.0.1:8000/api-token-auth/', {
             email: email, password: password
           }).then(loginSuccessFn, loginErrorFn);
 
           function loginSuccessFn(data, status, headers, config) {
-            Authentication.setAuthenticatedAccount(data.data);
 
-            // window.location = '#/accounts/profiles';
-            $location.url('#/accounts/profiles')
+            var exp_time = moment(new Date().getTime()).unix() + 2990;
+            store.set('token', data.data.token);
+            store.set('refresh_token', data.data.token);
+            store.set('expires_on', exp_time);
+            $window.localStorage.setItem('access_token', data.data.token);
+            $window.localStorage.setItem('refresh_token', data.data.token);
+            $window.localStorage.setItem('expires_on', exp_time);
+            console.log('token: ', $window.localStorage.getItem('access_token'));
+            console.log('exp_time', exp_time);
+            // Authentication.setAuthenticatedAccount(data.data);
+
+            $location.url('/profiles')
           }
 
           function loginErrorFn(data, status, headers, config) {
@@ -58,8 +67,9 @@ angular
             .then(logoutSuccessFn, logoutErrorFn);
 
           function logoutSuccessFn(data, status, headers, config) {
-            Authentication.unauthenticate();
 
+            store.remove('token');
+            $window.localStorage.clear();
             window.location = '#/accounts/login'
           }
 

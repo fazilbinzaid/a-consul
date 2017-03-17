@@ -4,8 +4,8 @@ angular.
   module('profileCreateForm').
   component('profileCreateForm', {
     templateUrl: 'profile-create-form/profile-create-form.template.html',
-    controller: [ '$scope','$rootScope', 'Authentication', 'Profiles',
-      function ProfileCreateFormController($scope, $rootScope, Authentication, Profiles) {
+    controller: ['$http', '$scope', 'store',
+      function ProfileCreateFormController($http, $scope, store) {
 
         $scope.jobs = [('Project Manager', 'Project Manager'), ('Developer', 'Developer'), ('Tester', 'Tester'),
            ('Technical Lead', 'Technical Lead'), ('Hybrid', 'Hybrid'), ('DevOps', 'DevOps'),
@@ -21,6 +21,8 @@ angular.
           "expected_ctc": 2,
           "notice_period": 30,
         };
+
+        $scope.token = store.get('token');
 
         $scope.profile.skill_details = [];
 
@@ -61,30 +63,26 @@ angular.
 
         };
 
+
         $scope.submitForm = function() {
           var profile = JSON.stringify($scope.profile);
-          console.log(profile);
-          $rootScope.$broadcast('post.created', {
-            content: profile,
-            user: {
-              email: Authentication.getAuthenticatedAccount().email
+          $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8000/accounts/profiles/',
+            data: profile,
+            headers: {'Content-Type': 'application/json'}
+          })
+            .then(submitFormSuccessFn, submitFormErrorFn);
+            
+            function submitFormSuccessFn(response, status, headers, config) {
+              console.log(response);
             }
-          });
-          // $scope.closeThisDialog();
 
-          Profiles.create(profile).then(createProfileSuccessFn, createProfileErrorFn);
-
-          function createProfileSuccessFn(data, status, headers, config) {
-            console.log('Success! Post created.');
-          }
-
-          function createProfileErrorFn(data, status, headers, config) {
-            $rootScope.$broadcast('post.created.error');
-            // Snackbar.error(data.error);
-          }
-
-
+            function submitFormErrorFn(response, status, headers, config) {
+              console.log('Epic Failure!');
+            }
         };
+
 
       }]
   });

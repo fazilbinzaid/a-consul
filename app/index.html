@@ -13,10 +13,16 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/autofill-event/src/autofill-event.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
     <script src="services/authentication.services.js"></script>
     <script src="services/profiles.services.js"></script>
+    <script src="services/interceptor.services.js"></script>
+    <script src="services/tokeninterceptor.services.js"></script>
     <script src="services/snackbar.services.js"></script>
     <script src="controllers/navbar.controller.js"></script>
     <script src="profile-list/profile-list.module.js"></script>
@@ -46,11 +52,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="">Home</a></li>
-            <li><a href=''>Profiles</a></li></li>
+            <li><a href="#/accounts/profiles">Profiles</a></li></li>
             <li><a href=''>Questions</a></li></li>
           </ul>
           <ul class="nav navbar-nav">
-            <li><a class="pull-right" href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+            <li><a class="pull-right" href="javascript:void(0)" ng-show="loggedin" ng-click="logout()">Logout</a></li>
           </ul>
         </div>
         <!--/.nav-collapse -->

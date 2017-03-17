@@ -3,11 +3,18 @@
 
 angular.
   module('consultancyApp').
-  config(['$locationProvider', '$routeProvider', '$httpProvider',
-    function config($locationProvider, $routeProvider, $httpProvider) {
+  config(['$locationProvider', '$routeProvider', '$httpProvider', 'jwtInterceptorProvider', 'jwtOptionsProvider',
+    function config($locationProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, jwtOptionsProvider) {
 
 
       $locationProvider.hashPrefix('/accounts');
+
+      jwtOptionsProvider.config({
+        authPrefix: 'Token ',
+        whiteListedDomains: ['http://127.0.0.1:8000/', 'jsonplaceholder.typicode.com'],
+      });
+
+      $httpProvider.interceptors.push('Interceptor');
 
       $routeProvider.
         when('/profiles', {
@@ -29,15 +36,9 @@ angular.
 
 
         // $locationProvider.html5Mode(true);
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $httpProvider.defaults.withCredentials = true;
+        // $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        // $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+        // $httpProvider.defaults.withCredentials = true;
 
     }
-])
-  .run(['$http', '$cookies',
-      function($http, $cookies) {
-
-        $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
-
-      }]);
+]);

@@ -4,26 +4,25 @@ angular.
   module('profileList').
   component('profileList', {
     templateUrl: 'profile-list/profile-list.template.html',
-    controller: ['$http', '$scope', '$cookies', 'Authentication',
-      function ProfileListController($http, $scope, $cookies, Authentication) {
+    controller: ['$http', '$scope', 'store', 'authService',
+      function ProfileListController($http, $scope, store, authService) {
         var self = this;
-        var data = Authentication.getAuthenticatedAccount();
+        var token = store.get('token');
+        // var data = Authentication.getAuthenticatedAccount();
         // self.orderProp = 'user';
+        activate();
 
-        $http({
-          method: 'GET',
-          url: 'http://127.0.0.1:8000/accounts/profiles/',
-          // data: {email:data.email, password:data.password},
-          headers: {'Content-Type': 'application/json',
-                    // 'email':data.email, 'password':data.password
-                    }
-        }).then(function(response) {
-          self.profiles = response.data;
+        function activate() {
+          return authService.getAuthorizationHeader().then(authHeader => {
+            return $http.get('http://127.0.0.1:8000/accounts/profiles/', {headers: authHeader}).then(function(response) {
+              self.profiles = response.data;
+              $scope.locfilter = function(profile) {
+                return profile.location === 'Ernakulam' || profile.location === 'Kochi';
+              };
+            });
 
-        $scope.locfilter = function(profile) {
-          return profile.location === 'Ernakulam' || profile.location === 'Kochi';
-        };
+          })
+        }
 
-        });
       }]
   });

@@ -3,20 +3,24 @@ angular.
   module('profileLogin').
   component('profileLogin', {
     templateUrl: 'profile-login/profile-login.template.html',
-    controller: ['$location', '$scope', 'Authentication',
-      function ProfileLoginController($location, $scope, Authentication) {
+    controller: ['$location', '$scope', 'Authentication', 'authService', '$http',
+      function ProfileLoginController($location, $scope, Authentication, authService, $http) {
 
         $scope.login = login;
-        activate();
+        // activate();
 
-        function activate() {
-          if (Authentication.isAuthenticated()) {
-            $location.url('/profiles');
-          }
-        }
+        // function activate() {
+        //   if (Authentication.isAuthenticated()) {
+        //     $location.url('/profiles');
+        //   }
+        // }
 
         function login() {
           Authentication.login($scope.email, $scope.password);
+          $scope.loggedin = true;
+
         }
+
+
       }]
   });
