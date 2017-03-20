@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default navbar-static-top nav_bar affix" ng-controller="NavbarController">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      </button>
+      <a class="navbar-brand" href="#">Raw Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="">Home</a></li>
+        <li><a href="#/accounts/profiles">Profiles</a></li></li>
+        <li><a href=''>Questions</a></li></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="pull-right" href="javascript:void(0)" ng-show="loggedin" ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>

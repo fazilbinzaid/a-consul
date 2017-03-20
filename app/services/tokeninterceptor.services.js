@@ -2,37 +2,30 @@
 
 angular
   .module('tokeninterceptor.services', [])
-  .factory('authService', ['$http', '$q', '$window', 'moment', 'store',
-      function($http, $q, $window, moment, store) {
-        const storage = $window.localStorage;
-        let cacheToken = {};
+  .factory('authService', ['$http', '$q', '$window', 'moment', 'store', 'jwtHelper',
+      function($http, $q, $window, moment, store, jwtHelper) {
+        let cache = {};
+        // var isExpired = jwtHelper.isTokenExpired();
         return {
           getAuthorizationHeader() {
-            if (cacheToken.access_token && cacheToken.expires_on > moment(new Date().getTime()).unix()) {
+            if (cache.access_token && !jwtHelper.isTokenExpired(cache.access_token)) {
 
-              return $q.when({ 'Authorization': 'Token ' + cacheToken.access_token });
+              return $q.when({ 'Authorization': 'Token ' + cache.access_token });
 
             } else {
-              cacheToken.access_token = storage.getItem('access_token');
-              cacheToken.refresh_token = storage.getItem('refresh_token');
-              cacheToken.expires_on = storage.getItem('expires_on');
-              if (cacheToken.access_token && cacheToken.expires_on > moment(new Date().getTime()).unix()) {
+              cache.access_token = store.get('token');
+              // cache.expires_on = storage.getItem('expires_on');
+              if (cache.access_token && !jwtHelper.isTokenExpired(cache.access_token)) {
 
-                return $q.when({ 'Authorization': 'Token ' + cacheToken.access_token });
+                return $q.when({ 'Authorization': 'Token ' + cache.access_token });
 
               } else {
-                return $http.post('http://127.0.0.1:8000/api-token-refresh/',{'token': cacheToken.access_token})
+                return $http.post('http://127.0.0.1:8000/api-token-refresh/',{'token': cache.access_token})
                 .then(response => {
-                  var exp_time = moment(new Date().getTime()).unix() + 2990;
-                  const token = response.data.token;
                   store.set('token', response.data.token);
-                  cacheToken.access_token = token;
-                  cacheToken.refresh_token = token;
-                  storage.setItem('access_token', cacheToken.access_token);
-                  storage.setItem('refresh_token', cacheToken.refresh_token);
-                  storage.setItem('expires_on', exp_time);
-                  console.log('refresh_token', cacheToken.access_token);
-                  return {'Authorization': 'Token ' + cacheToken.access_token};
+                  cache.access_token = response.data.token;
+                  console.log('access_token', cache.access_token);
+                  return {'Authorization': 'Token ' + cache.access_token};
 
                 },
                 err => {

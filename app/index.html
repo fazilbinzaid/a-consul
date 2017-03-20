@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>ConsultancyApp</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/css/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/autofill-event/src/autofill-event.js"></script>
@@ -41,27 +44,8 @@
 
   <body class="fadeImage">
 
+    <div ng-include src="'views/navbar.html'"></div>
 
-    <nav class="navbar navbar-default navbar-static-top nav_bar affix" ng-controller="NavbarController">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          </button>
-          <a class="navbar-brand" href="#">Raw Data</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="">Home</a></li>
-            <li><a href="#/accounts/profiles">Profiles</a></li></li>
-            <li><a href=''>Questions</a></li></li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li><a class="pull-right" href="javascript:void(0)" ng-show="loggedin" ng-click="logout()">Logout</a></li>
-          </ul>
-        </div>
-        <!--/.nav-collapse -->
-      </div>
-    </nav>
     <br><br><br>
 
     <div ng-view></div>

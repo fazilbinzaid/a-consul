@@ -3,17 +3,18 @@ angular.
   module('profileLogin').
   component('profileLogin', {
     templateUrl: 'profile-login/profile-login.template.html',
-    controller: ['$location', '$scope', 'Authentication', 'authService', '$http',
-      function ProfileLoginController($location, $scope, Authentication, authService, $http) {
+    controller: ['$location', '$scope', 'Authentication', 'jwtHelper', '$http', 'store',
+      function ProfileLoginController($location, $scope, Authentication, jwtHelper, $http, store) {
 
         $scope.login = login;
-        // activate();
+        var token = store.get('token');
+        activate();
 
-        // function activate() {
-        //   if (Authentication.isAuthenticated()) {
-        //     $location.url('/profiles');
-        //   }
-        // }
+        function activate() {
+          if (token && !jwtHelper.isTokenExpired(token)) {
+            $location.url('/profiles');
+          }
+        }
 
         function login() {
           Authentication.login($scope.email, $scope.password);

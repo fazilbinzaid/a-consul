@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Resume</title>
+    <link type="text/css" rel="stylesheet" href="styles/css/green.css" />
+    <link type="text/css" rel="stylesheet" href="styles/css/print.css" media="print"/>
+
+    <script type="text/javascript" src="styles/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="styles/js/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="styles/js/cufon.yui.js"></script>
+    <script type="text/javascript" src="styles/js/scrollTo.js"></script>
+    <script type="text/javascript" src="styles/js/myriad.js"></script>
+    <script type="text/javascript" src="styles/js/jquery.colorbox.js"></script>
+  </head>
+  <body>
+  <div>
+    <div id="wrapper">
+      <div class="wrapper-top"></div>
+      <div class="wrapper-mid">
+        <div id="paper">
+          <div class="paper-top"></div>
+          <div id="paper-mid">
+            <div class="entry">
+              <img class="portrait" src="styles/images/image.jpg" alt="" />
+              <div class="self">
+                <h1 class="name">{{ $ctrl.profile.name }} <br />
+                  <span>{{ $ctrl.profile.designation }}</span></h1>
+                <ul>
+                  <li class="ad">111 Lorem Street, 34785, Ipsum City</li>
+                  <li class="mail">{{ $ctrl.profile.email }}</li>
+                  <li class="tel">+11 444 555 22 33</li>
+                  <li class="web">www.businessweb.com</li>
+                </ul>
+              </div>
+            </div>
+
+              <!-- <div class="social">
+                <ul>
+                  <li><a class='north' href="#" title="Download .pdf"><img src="images/icn-save.jpg" alt="Download the pdf version" /></a></li>
+                  <li><a class='north' href="javascript:window.print()" title="Print"><img src="images/icn-print.jpg" alt="" /></a></li>
+                  <li><a class='north' id="contact" href="contact/index.html" title="Contact Me"><img src="images/icn-contact.jpg" alt="" /></a></li>
+                  <li><a class='north' href="#" title="Follow me on Twitter"><img src="images/icn-twitter.jpg" alt="" /></a></li>
+                  <li><a class='north' href="#" title="My Facebook Profile"><img src="images/icn-facebook.jpg" alt="" /></a></li>
+                </ul>
+              </div> -->
+
+            <!-- <div class="entry">
+              <h2>OBJECTIVE</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim viverra nibh sed varius. Proin bibendum nunc in sem ultrices posuere. Aliquam ut aliquam lacus.</p>
+            </div>
+            <div class="entry">
+              <h2>EDUCATION</h2>
+              <div class="content">
+                <h3>Sep 2005 - Feb 2007</h3>
+                <p>Academy of Art University, London <br />
+                  <em>Master in Communication Design</em></p>
+              </div>
+              <div class="content">
+                <h3>Sep 2001 - Jun 2005</h3>
+                <p>University of Art &amp; Design, New York <br />
+                  <em>Bachelor of Science in Graphic Design</em></p>
+              </div>
+            </div> -->
+            <div class="entry">
+              <h2>CTC</h2>
+              <div class="content">
+                <p>CURRENT : {{ $ctrl.profile.current_ctc }} lakh/annum</p>
+              </div>
+              <div class="content">
+                <p>EXPECTED : {{ $ctrl.profile.expected_ctc }} lakh/annum</p>
+              </div>
+            </div>
+
+            <div class="entry">
+              <h2>SKILLS</h2>
+              <div class="content">
+                <h3>Software Knowledge</h3>
+                <ul class="skills">
+                  <li>Photoshop</li>
+                  <li>Illustrator</li>
+                  <li>InDesign</li>
+                  <li>Flash</li>
+                  <li>Fireworks</li>
+                  <li>Dreamweaver</li>
+                  <li>After Effects</li>
+                  <li>Cinema 4D</li>
+                  <li>Maya</li>
+                </ul>
+              </div>
+              <div class="content">
+                <h3>Languages</h3>
+                <ul class="skills">
+                  <li ng-repeat="skill in $ctrl.profile.skill_details">{{ skill.skill }} ( {{ skill.exp }} years )</li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="entry">
+            <h2>RESUME</h2>
+            	<ul class="works">
+            		<li><a href="images/1.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/2.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/3.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/1.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/2.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/3.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/1.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            		<li><a href="images/1.jpg" rel="gallery" title="Lorem ipsum dolor sit amet."><img src="styles/images/image.jpg" alt="" /></a></li>
+            	</ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="paper-bottom"></div>
+        </div>
+      </div>
+      <div class="wrapper-bottom"></div>
+    </div>
+  </div>
+  <div id="message"><a href="#top" id="top-link">Go to Top</a></div>
+  </body>
+</html>

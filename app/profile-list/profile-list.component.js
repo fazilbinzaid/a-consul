@@ -14,7 +14,8 @@ angular.
 
         function activate() {
           return authService.getAuthorizationHeader().then(authHeader => {
-            return $http.get('http://127.0.0.1:8000/accounts/profiles/', {headers: authHeader}).then(function(response) {
+            return $http.get('http://127.0.0.1:8000/accounts/profiles/', {headers: authHeader})
+            .then(function(response) {
               self.profiles = response.data;
               $scope.locfilter = function(profile) {
                 return profile.location === 'Ernakulam' || profile.location === 'Kochi';

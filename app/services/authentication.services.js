@@ -2,8 +2,8 @@
 
 angular
   .module('authentication.services', [])
-  .factory('Authentication', ['$cookies', '$http', '$location', 'store', '$window', 'moment',
-      function Authentication($cookies, $http, $location, store, $window, moment) {
+  .factory('Authentication', ['$cookies', '$http', '$location', 'store', '$window', 'moment', 'jwtHelper',
+      function Authentication($cookies, $http, $location, store, $window, moment, jwtHelper) {
 
 
         var Authentication = {
@@ -35,24 +35,16 @@ angular
 
         function login(email, password) {
 
-          // $http.get('http://127.0.0.1:8000/api/auth/login/');
-
           return $http.post('http://127.0.0.1:8000/api-token-auth/', {
             email: email, password: password
           }).then(loginSuccessFn, loginErrorFn);
 
           function loginSuccessFn(data, status, headers, config) {
 
-            var exp_time = moment(new Date().getTime()).unix() + 2990;
+            // var exp_time = moment(jwtHelper.getTokenExpirationDate(data.data.token)).unix();
+            // store.set('expires_on', exp_time);
+            // var tokenPayload = jwtHelper.decodeToken(data.data.token);
             store.set('token', data.data.token);
-            store.set('refresh_token', data.data.token);
-            store.set('expires_on', exp_time);
-            $window.localStorage.setItem('access_token', data.data.token);
-            $window.localStorage.setItem('refresh_token', data.data.token);
-            $window.localStorage.setItem('expires_on', exp_time);
-            console.log('token: ', $window.localStorage.getItem('access_token'));
-            console.log('exp_time', exp_time);
-            // Authentication.setAuthenticatedAccount(data.data);
 
             $location.url('/profiles')
           }
@@ -80,23 +72,27 @@ angular
 
 
         function getAuthenticatedAccount() {
-          if (!$cookies.authenticatedAccount) {
-            return;
+          var token = store.get('token');
+          if (token) {
+            var payload = jwtHelper.decodeToken(token);
+            return payload;
           }
-
-          return JSON.parse($cookies.authenticatedAccount);
         }
 
         function isAuthenticated() {
-          return !!$cookies.authenticatedAccount;
+          var token = store.get('token');
+          if (token && !jwtHelper.isTokenExpired(token)) {
+            return true;
+          }
         }
 
         function setAuthenticatedAccount(account) {
-          $cookies.authenticatedAccount = JSON.stringify(account);
         }
 
         function unauthenticate() {
-          delete $cookies.authenticatedAccount;
+          store.remove('token');
+          store.remove('expires_on');
+          $window.localStorage.clear();
         }
 
 

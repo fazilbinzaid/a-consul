@@ -4,6 +4,7 @@ angular.module('consultancyApp', [
   // 'ngModule',
   'ngRoute',
   'ngResource',
+  'ngTagsInput',
   'authentication.services',
   'profiles.services',
   'interceptor.services',
