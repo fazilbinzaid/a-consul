@@ -20,7 +20,7 @@ angular
 
 
         function register(email, password) {
-          return $http.post('http://127.0.0.1:8000/accounts/user/', {
+          return $http.post(localhost + 'accounts/user/', {
             email: email,
             password: password
           }).then(registerSuccessFn, registerErrorFn);
@@ -35,7 +35,7 @@ angular
 
         function login(email, password) {
 
-          return $http.post('http://127.0.0.1:8000/api-token-auth/', {
+          return $http.post(localhost + 'api-token-auth/', {
             email: email, password: password
           }).then(loginSuccessFn, loginErrorFn);
 
@@ -55,7 +55,7 @@ angular
         }
 
         function logout() {
-          return $http.post('http://127.0.0.1:8000/accounts/logout/')
+          return $http.post(localhost + 'accounts/logout/')
             .then(logoutSuccessFn, logoutErrorFn);
 
           function logoutSuccessFn(data, status, headers, config) {

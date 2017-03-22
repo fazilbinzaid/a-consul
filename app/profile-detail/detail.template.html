@@ -1,0 +1,100 @@
+
+
+<link type="text/css" rel="">
+
+<div class="container">
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad" >
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ $ctrl.profile.name }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class=" col-lg-9 col-lg-9 ">
+                  <table class="table table-user-information">
+                    <tbody>
+
+                      <tr>
+                        <td>Email</td>
+                        <td>: {{ $ctrl.profile.email }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Designation</td>
+                        <td>: {{ $ctrl.profile.designation }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Skills </td>
+                        <td>: Experience (years)</td>
+                      </tr>
+                      <!-- {% for item in profile.skills.all %} -->
+                      <tr ng-repeat="item in $ctrl.profile.skill_details">
+                      <td class='text-right' >{{ item.skill }}</td>
+                      <td>: {{ item.exp }}</td>
+                      </tr>
+
+
+
+                      <tr>
+                        <td>Current CTC </td>
+                        <td>: {{ $ctrl.profile.current_ctc }} lkh (per annum)</td>
+                      </tr>
+
+                      <tr>
+                        <td>Expected CTC </td>
+                        <td>: {{ $ctrl.profile.expected_ctc }} lkh (per annum)</td>
+                      </tr>
+
+                      <tr>
+                        <td>Notice Period </td>
+                        <td>: {{ $ctrl.profile.notice_period }} Days</td>
+                      </tr>
+
+                      <tr>
+                        <td>Current Location </td>
+                        <td>: {{ $ctrl.profile.location }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Resume </td>
+                        <td>: <a href="{{ $ctrl.profile.resume.url }}">resume.pdf</a></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- {% if profile.recording %} -->
+        <video class='col-sm-5 col-sm-offset-1' width="320" height="240" controls>
+          <source src="{{ profile.recording.url }}" type="video/mp4"> <Your browser does not support the video tag./>
+        {{ profile.recording }}
+
+        </video>
+
+      </div>
+      <!-- <div class="col-sm-4 col-sm-offset-8"  style='background-color:black;height:240px'> -->
+
+      <!-- </div> -->
+
+      <br>
+      <br>
+      <br>
+      <!-- <a class='btn btn-success' href='{% url "recruits:profile-update" profile.id %}' role='button'>Update Profile</a> -->
+      <!-- <button class='btn btn-danger col-sm-offset-6' role='button'>Delete</button><br> -->
+      <!-- <a class='btn btn-danger pull-right col-sm-2' href='/skillupdate/{{ profile.id }}/' role='button'>Edit Skill</a> -->
+
+    </div>

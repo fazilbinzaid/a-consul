@@ -4,8 +4,8 @@ angular.
   module('profileList').
   component('profileList', {
     templateUrl: 'profile-list/profile-list.template.html',
-    controller: ['$http', '$scope', 'store', 'authService',
-      function ProfileListController($http, $scope, store, authService) {
+    controller: ['$http', '$scope', 'store', 'authService', 'Profiles',
+      function ProfileListController($http, $scope, store, authService, Profiles) {
         var self = this;
         var token = store.get('token');
         // var data = Authentication.getAuthenticatedAccount();
@@ -14,7 +14,8 @@ angular.
 
         function activate() {
           return authService.getAuthorizationHeader().then(authHeader => {
-            return $http.get('http://127.0.0.1:8000/accounts/profiles/', {headers: authHeader})
+            // return $http.get(localhost + 'accounts/profiles/', {headers: authHeader})
+            Profiles.get(authHeader)
             .then(function(response) {
               self.profiles = response.data;
               $scope.locfilter = function(profile) {

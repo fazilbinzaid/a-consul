@@ -20,7 +20,7 @@ angular
                 return $q.when({ 'Authorization': 'Token ' + cache.access_token });
 
               } else {
-                return $http.post('http://127.0.0.1:8000/api-token-refresh/',{'token': cache.access_token})
+                return $http.post(localhost + 'api-token-refresh/',{'token': cache.access_token})
                 .then(response => {
                   store.set('token', response.data.token);
                   cache.access_token = response.data.token;
@@ -29,7 +29,7 @@ angular
 
                 },
                 err => {
-                  console.log('Error Refreshing token ' + err);
+                  console.log('Error Refreshing token ',err);
                 }
               );
               }

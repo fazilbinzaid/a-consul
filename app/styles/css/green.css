@@ -51,9 +51,10 @@ blockquote, q {
 /* ----------------------------------------- */
 
 body {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	background-color: #e1e0db;
-	background-image: url(../jpg/new2.jpg);
+	/*background-image: url(../images/new2.jpg);*/
 	background-repeat: repeat;
 	font-size:13px;
 	line-height: 17px;

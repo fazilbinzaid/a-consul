@@ -3,27 +3,39 @@
 angular.
   module('profileDetail').
   component('profileDetail', {
-    templateUrl: 'profile-detail/template.html',
-    controller: ['$http', '$routeParams', 'authService', '$scope',
-      function ProfileDetailController($http, $routeParams, authService, $scope) {
+    templateUrl: 'profile-detail/profile-detail.template.html',
+    controller: ['$routeParams', 'authService', '$scope', 'Profiles', '$location',
+      function ProfileDetailController($routeParams, authService, $scope, Profiles, $location) {
         var self = this;
+        var profile_id = $routeParams.profileId;
 
         activate();
 
         function activate() {
+
           return authService.getAuthorizationHeader().then(authHeader => {
-            $http.get('http://127.0.0.1:8000/accounts/profiles/' + $routeParams.profileId + '/', {headers: authHeader})
+            // $http.get(localhost + 'accounts/profiles/' + $routeParams.profileId + '/', {headers: authHeader})
+            Profiles.detail(profile_id, authHeader)
             .then(function(response) {
               self.profile = response.data;
             });
           });
         }
 
-        $scope.modalShown = false;
+        $scope.delete = function(id) {
+          return authService.getAuthorizationHeader().then(authHeader => {
+            Profiles.destroy(id, authHeader)
+            .then(deleteSuccessFn, deleteErrorFn);
 
-        $scope.openModal = function() {
-          $scope.modalShown = !$scope.modalShown;
-        }
+            function deleteSuccessFn() {
+              $location.url('/deleted_page');
+            }
+
+            function deleteErrorFn() {
+              $location.url('/404_page');
+            }
+          });
+        };
 
       }]
   });

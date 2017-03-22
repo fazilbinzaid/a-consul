@@ -168,7 +168,7 @@ padding-right: 40px;
 ------------------------*/
 body{
   /*background:#4e5961;*/
-  background-image: url("/styles/jpg/new2.jpg");
+  background-image: url("/styles/images/bg.jpg");
 
 }
 .description{
@@ -435,7 +435,7 @@ body{
 .toppad
 {margin-top:20px;
 }
-.white-font {
+.whyte-font {
   color: #dff0d8;
 }
 .experience-padding {

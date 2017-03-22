@@ -3,6 +3,7 @@
 angular.module('consultancyApp', [
   // 'ngModule',
   'ngRoute',
+  'ui.router',
   'ngResource',
   'ngTagsInput',
   'authentication.services',
@@ -22,3 +23,6 @@ angular.module('consultancyApp', [
   'accountRegister',
 ]);
 // ngModule.constant('moment', require('moment-timezone'));
+
+const localhost = 'http://127.0.0.1:8000/';
+const heroku = 'https://evening-plains-46324.herokuapp.com/';

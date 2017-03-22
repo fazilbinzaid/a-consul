@@ -7,18 +7,33 @@ angular.
 
         var Profiles = {
           create: create,
-          get: get
+          get: get,
+          detail: detail,
+          destroy: destroy
         };
         return Profiles;
 
-        function create(content) {
-          return $http.post('http://127.0.0.1:8000/accounts/profiles/', {
-            data: content
-          });
+        function create(content, config) {
+          if (!config) {
+            config = {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            };
+          }
+          return $http.post(localhost + 'accounts/profiles/', content, config);
         }
 
-        function get() {
-          return $http.get('http://127.0.0.1:8000/accounts/profiles/');
+        function get(headers) {
+          return $http.get(localhost + 'accounts/profiles/', {headers: headers});
+        }
+
+        function detail(id, headers) {
+          return $http.get(localhost + 'accounts/profiles/' + id + '/', {headers: headers});
+        }
+
+        function destroy(id, headers) {
+          return $http.delete(localhost + 'accounts/profiles/' + id + '/', {headers: headers});
         }
 
       }]);

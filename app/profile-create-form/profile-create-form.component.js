@@ -4,8 +4,8 @@ angular.
   module('profileCreateForm').
   component('profileCreateForm', {
     templateUrl: 'profile-create-form/profile-create-form.template.html',
-    controller: ['$http', '$scope', 'store',
-      function ProfileCreateFormController($http, $scope, store) {
+    controller: ['$http', '$scope', 'store', 'Profiles', '$location',
+      function ProfileCreateFormController($http, $scope, store, Profiles, $location) {
 
         $scope.jobs = [('Project Manager', 'Project Manager'), ('Developer', 'Developer'), ('Tester', 'Tester'),
            ('Technical Lead', 'Technical Lead'), ('Hybrid', 'Hybrid'), ('DevOps', 'DevOps'),
@@ -66,16 +66,18 @@ angular.
 
         $scope.submitForm = function() {
           var profile = JSON.stringify($scope.profile);
-          $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8000/accounts/profiles/',
-            data: profile,
-            headers: {'Content-Type': 'application/json'}
-          })
+          // $http({
+          //   method: 'POST',
+          //   url: localhost + 'accounts/profiles/',
+          //   data: profile,
+          //   headers: {'Content-Type': 'application/json'}
+          // })
+          Profiles.create(profile)
             .then(submitFormSuccessFn, submitFormErrorFn);
-            
+
             function submitFormSuccessFn(response, status, headers, config) {
-              console.log(response);
+              console.log(response.data.id);
+              $location.url('/profiles/' + response.data.id);
             }
 
             function submitFormErrorFn(response, status, headers, config) {

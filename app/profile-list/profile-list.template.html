@@ -3,7 +3,7 @@
 
 
 <br>
-<a class='pull-right col-sm-2 col-sm-offset-1 custom-font' href="#/accounts/profiles/create">Create Profile</a>
+<a class='pull-right col-sm-2 col-sm-offset-1' href="#/accounts/profiles/create">Create Profile</a>
 
 
 
@@ -29,12 +29,6 @@
 		<th>Notice Period</th>
 	</tr>
 	</thead>
-	<tr>
-	<select ng-model="query" class="custom-font">
-		<option value=""> </option>
-		<option value="locfilter" class="custom-color">Ernakulam</option>
-	</select>
-	</tr>
 
 	<ul class="profiles">
 		<tr ng-repeat="profile in $ctrl.profiles | filter: query">
