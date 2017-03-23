@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('consultancyApp', [
+var app = angular.module('consultancyApp', [
   // 'ngModule',
   'ngRoute',
   'ui.router',
@@ -17,7 +17,7 @@ angular.module('consultancyApp', [
   // 'snackbar.services',
   'Navbar',
   'profileList',
-  'profileDetail',
+  // 'profileDetail',
   'profileCreateForm',
   'profileLogin',
   'accountRegister',

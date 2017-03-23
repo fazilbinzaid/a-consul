@@ -32,16 +32,16 @@
     <script src="services/tokeninterceptor.services.js"></script>
     <script src="services/snackbar.services.js"></script>
     <script src="controllers/navbar.controller.js"></script>
-    <script src="profile-list/profile-list.module.js"></script>
     <script src="profile-list/profile-list.component.js"></script>
-    <script src="profile-detail/profile-detail.module.js"></script>
+    <script src="profile-list/profile-list.route.js"></script>
+    <!-- <script src="profile-detail/profile-detail.route.js"></script> -->
     <script src="profile-detail/profile-detail.component.js"></script>
-    <script src="profile-create-form/profile-create-form.module.js"></script>
     <script src="profile-create-form/profile-create-form.component.js"></script>
-    <script src="profile-login/profile-login.module.js"></script>
+    <script src="profile-create-form/profile-create-form.route.js"></script>
     <script src="profile-login/profile-login.component.js"></script>
-    <script src="account-register/account-register.module.js"></script>
+    <script src="profile-login/profile-login.route.js"></script>
     <script src="account-register/account-register.component.js"></script>
+    <script src="account-register/account-register.route.js"></script>
     <base href="/" target="">
 
   </head>
@@ -52,7 +52,7 @@
 
     <br><br><br>
 
-    <div ng-view></div>
+    <div ui-view></div>
 
   </body>
 </html>

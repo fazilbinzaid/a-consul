@@ -70,22 +70,30 @@
           <div class="form-group">
             <label>Skill</label>
             <input type="text" name="name" class="form-control" ng-model="item.skill">
+            <span class="danger">{{ errorSkill }}</span>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
             <label>Experience(Years)</label>
             <input type="number" name="name" class="form-control" ng-model="item.exp">
+            <span>{{ errorExp }}</span>
           </div>
         </div>
         <div class="col-sm-4 custom-color" id="btndiv">
-          <button class="small" style="margin-left: -29px;margin-top: 37px;" id="addbutton" ng-click="add(item); addNew(); removebutton()">Add new</button>
-          <!-- <button class="small" style="margin-top: 37px;margin-left: -4px;" id="removebtn" ng-click="removeitem(item)">Remove</button> -->
+          <!-- <button class="small" style="margin-left: -29px;margin-top: 37px;" id="addbutton" ng-click="add(item); addNew(); removebutton()">Add new</button> -->
+          <button class="small" style="margin-top: 36px;margin-left: -29px;" id="removebtn" ng-click="removeitem($index)">Remove</button>
         </div>
-        <div class="col-sm-11 col-sm-offset-1">
+        <!-- <div class="col-sm-11 col-sm-offset-1">
           <br>
           <button type="submit" id="submitbutton" class="btn btn-primary pull-right" ng-click="add(item); submitForm()" name="button">Submit</button>
-        </div>
+        </div> -->
+      </div>
+      <div>
+        <a href="" class="" style="margin-left: 32px;" id="addbutton" ng-click="addNew()">Add another</a>
+      </div>
+      <div>
+        <button type="submit" id="submitbutton" style="margin-left: 32px;margin-top: 3px;" class="btn btn-primary" ng-click="add(itemstoadd); submitForm()" name="button">Submit</button>
       </div>
       <span> </span>
     </form>
